@@ -16,9 +16,12 @@ app.use("/blogs", blogRoutes);
 
 // mongoose configuration
 mongoose
-  .connect(process.env.DB_URL)
+  .connect(process.env.DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB connected"))
-  .catch(err => console.error("MongoDB connection error:", err));
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 // Routes
 app.get("/", (req, res) => {
