@@ -7,7 +7,14 @@ const cors = require("cors");
 
 // middleware
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+const corsConfig = {
+  origin: "",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+};
+app.use(cors(corsConfig));
+app.options("", cors(corsConfig));
 
 // routes
 const blogRoutes = require("./src/routes/blog.routes");
