@@ -6,15 +6,14 @@ require("dotenv").config();
 const cors = require("cors");
 
 // middleware
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+  })
+);
 app.use(express.json());
-// app.use(cors());
-const corsConfig = {
-  origin: "",
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-};
-app.use(cors(corsConfig));
-app.options("", cors(corsConfig));
 
 // routes
 const blogRoutes = require("./src/routes/blog.routes");
